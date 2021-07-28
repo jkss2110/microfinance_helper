@@ -1,6 +1,6 @@
 # Microfinance Helper
 
-This is a microfinancing monitoring and helper application which helps to keep track and provide score for the lender as well as the borrower. 
+This is a microfinancing monitoring and helper application which helps to keep track and provide score (like CIBIL score) for the lender as well as the borrower. 
 
 ## What is Micro Finance ?
 Microfinance is a banking service provided to unemployed or low-income individuals or groups who otherwise would have no other access to financial services. 
@@ -24,20 +24,22 @@ The majority of microfinancing operations occur in developing nations.
 - Depending on the loan amount, the score of both borrower and lender will increase. 
 - On every successful loan payment, the score of the borrower and lender will increase.
 
-## Activity flow for applying a loan
+## Activity Diagrams
 <p align="center">
 <img src="./docs/img/Applying for loan.png" alt="alt text" width="500px" height="400px">
 </p>
+<p align="center"><b>Activity flow for applying a loan</b></p>
 
-## Activity flow for loan repayment
 <p align="center">
 <img src="./docs/img/Loan_payment.png" alt="alt text" width="500px" height="400px">
 </p>
+<p align="center"><b>Activity flow for loan repayment</b></p>
 
-## Activity flow for loan defaulting
 <p align="center">
 <img src="./docs/img/Missed_Payment.png" alt="alt text" width="500px" height="600px">
 </p>
+<p align="center"><b>Activity flow for missing payment</b></p>
 
-# TODO Discuss with Legendary people :P
+## TODO Discuss with Legendary people :P
+- Need to come up with a logic to calculate the score
 Learn more
