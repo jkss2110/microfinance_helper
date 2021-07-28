@@ -36,7 +36,7 @@ The majority of microfinancing operations occur in developing nations.
 
 ## Activity flow for loan defaulting
 <p align="center">
-<img src="./docs/img/Missed_Payment.png" alt="alt text" width="700px" height="400px">
+<img src="./docs/img/Missed_Payment.png" alt="alt text" width="500px" height="600px">
 </p>
 
 # TODO Discuss with Legendary people :P
