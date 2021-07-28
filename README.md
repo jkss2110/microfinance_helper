@@ -1,4 +1,4 @@
-# microfinance_helper
+# Microfinance Helper
 
 This is a microfinancing monitoring and helper application which helps to keep track and provide score for the lender as well as the borrower. 
 
@@ -26,17 +26,17 @@ The majority of microfinancing operations occur in developing nations.
 
 ## Activity flow for applying a loan
 <p align="center">
-<img src="./docs/img/Applying for loan.png" alt="alt text" width="500px" height="300px">
+<img src="./docs/img/Applying for loan.png" alt="alt text" width="500px" height="400px">
 </p>
 
 ## Activity flow for loan repayment
 <p align="center">
-<img src="./docs/img/Loan_payment.png" alt="alt text" width="500px" height="300px">
+<img src="./docs/img/Loan_payment.png" alt="alt text" width="500px" height="400px">
 </p>
 
 ## Activity flow for loan defaulting
 <p align="center">
-<img src="./docs/img/Missed_Payment.png" alt="alt text" width="500px" height="300px">
+<img src="./docs/img/Missed_Payment.png" alt="alt text" width="700px" height="400px">
 </p>
 
 # TODO Discuss with Legendary people :P
