@@ -9,10 +9,10 @@ Microfinance is a banking service provided to unemployed or low-income individua
 Microfinance allows people to take on reasonable small business loans safely, and in a manner that is consistent with ethical lending practices.
 The majority of microfinancing operations occur in developing nations.
 
-## What are the challenges faced?
+## What are the challenges faced by current system?
 - The process is informal.
 - There exist no authoritative rating mechanism exisiting for the sector.
-- Largely non-monitored.
+- Largely unmonitored.
 
 ## What issues are we trying to address?
 - Monitor loans with does not involve a Bank or NBFC.
