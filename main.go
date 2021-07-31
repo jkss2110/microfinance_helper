@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	shared.DBConnection()
 	shared.HandlerHttp(shared.ApiEndPoint)
 	http.ListenAndServe(":5000", nil)
 }
