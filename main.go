@@ -1,12 +1,16 @@
 package main
 
 import (
+	"fmt"
+	"microfinance/models"
 	"microfinance/shared"
 	"net/http"
 )
 
 func main() {
-	shared.DBConnection()
+	fmt.Println("Connection Open")
+	models.DBConnection()
 	shared.HandlerHttp(shared.ApiEndPoint)
 	http.ListenAndServe(":5000", nil)
+	defer models.Close()
 }

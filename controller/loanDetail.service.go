@@ -11,6 +11,9 @@ import (
 )
 
 func getAllLoans(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("ok")
+	models.GetAllLoanDetailDB()
+	fmt.Println("done")
 	loans := &models.LoanDetails
 	loanJSON, err := json.Marshal(loans)
 	if err != nil {

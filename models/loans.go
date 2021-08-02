@@ -1,5 +1,12 @@
 package models
 
+import (
+	"context"
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson"
+)
+
 type LoanDetail struct {
 	Lender       int
 	Borrower     int
@@ -9,29 +16,35 @@ type LoanDetail struct {
 	LoanEMI      int
 }
 
-var LoanDetails = []LoanDetail{
-	{
-		Lender:       1,
-		Borrower:     2,
-		LenderName:   "JK",
-		BorrowerName: "KJ",
-		LoanAmt:      1000,
-		LoanEMI:      500,
-	},
-	{
-		Lender:       2,
-		Borrower:     3,
-		LenderName:   "JK1",
-		BorrowerName: "KJ1",
-		LoanAmt:      1500,
-		LoanEMI:      500,
-	},
-	{
-		Lender:       3,
-		Borrower:     4,
-		LenderName:   "JK3",
-		BorrowerName: "KJ4",
-		LoanAmt:      100,
-		LoanEMI:      50,
-	},
+var LoanDetails = []LoanDetail{}
+
+func GetAllLoanDetailDB() {
+	var filter, option interface{}
+	// filter  gets all document
+	filter = bson.D{}
+	//  option remove id field from all documents
+	option = bson.D{{"_id", 0}}
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	// This method returns momngo.cursor and error if any.
+	cursor, err := QueryDB(ctx, "MicroFinance", "loandetails", filter, option)
+	if err != nil {
+		panic(err)
+	}
+	var results []bson.D
+	if err := cursor.All(Ctx, &results); err != nil {
+		panic(err)
+	}
+	// Append the loan details
+	formatResult(results)
+}
+
+func formatResult(result []bson.D) {
+	loanInfo := LoanDetail{}
+	LoanDetails = []LoanDetail{}
+	for _, doc := range result {
+		bsonBytes, _ := bson.Marshal(doc)
+		bson.Unmarshal(bsonBytes, &loanInfo)
+		LoanDetails = append(LoanDetails, loanInfo)
+	}
 }

@@ -1,0 +1,47 @@
+package models
+
+import (
+	"context"
+	"fmt"
+	"time"
+
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
+var (
+	Client *mongo.Client
+	Ctx    context.Context
+	Cancel context.CancelFunc
+)
+
+func connect(uri string) error {
+	var err error
+	Ctx, Cancel = context.WithTimeout(context.Background(), 30*time.Second)
+	Client, err = mongo.Connect(Ctx, options.Client().ApplyURI(uri))
+	return err
+}
+
+func Close() {
+
+	defer Cancel()
+	defer func() {
+		if err := Client.Disconnect(Ctx); err != nil {
+			fmt.Println("Error close")
+		}
+	}()
+}
+
+func DBConnection() {
+	err := connect("mongodb+srv://jk:jk@microservicehelper.gzriw.mongodb.net/MicroFinance?retryWrites=true&w=majority")
+	if err != nil {
+		panic("Error")
+	}
+}
+
+// query method returns a cursor and error.
+func QueryDB(ctx context.Context, dataBase, col string, query, field interface{}) (result *mongo.Cursor, err error) {
+	collection := Client.Database(dataBase).Collection(col)
+	result, err = collection.Find(ctx, query, options.Find().SetProjection(field))
+	return
+}
