@@ -8,12 +8,18 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 func getAllLoans(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("ok")
-	models.GetAllLoanDetailDB()
-	fmt.Println("done")
+	results, err := models.GetAllLoanDetailDB()
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	formatResult(results)
 	loans := &models.LoanDetails
 	loanJSON, err := json.Marshal(loans)
 	if err != nil {
@@ -37,11 +43,12 @@ func createLoanDetails(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	nextID := getNextID()
-	newLoan.Lender = nextID
-	nextID++
-	newLoan.Borrower = nextID + 1
-	models.LoanDetails = append(models.LoanDetails, newLoan)
+	_, erro := models.InsertOneLoanDetailDB(newLoan)
+	if erro != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+	} else {
+		w.WriteHeader(http.StatusCreated)
+	}
 	w.WriteHeader(http.StatusCreated)
 }
 
@@ -104,4 +111,14 @@ func getSingleLoan(borrowerID int, w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write(loanJSON)
 	w.WriteHeader(http.StatusFound)
+}
+
+func formatResult(result []bson.D) {
+	loanInfo := models.LoanDetail{}
+	models.LoanDetails = []models.LoanDetail{}
+	for _, doc := range result {
+		bsonBytes, _ := bson.Marshal(doc)
+		bson.Unmarshal(bsonBytes, &loanInfo)
+		models.LoanDetails = append(models.LoanDetails, loanInfo)
+	}
 }

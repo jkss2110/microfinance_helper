@@ -8,17 +8,17 @@ import (
 )
 
 type LoanDetail struct {
-	Lender       int
-	Borrower     int
-	LenderName   string
-	BorrowerName string
-	LoanAmt      int
-	LoanEMI      int
+	Lender       int    `bson:"Lender"`
+	Borrower     int    `bson:"Borrower"`
+	LenderName   string `bson:"LenderName"`
+	BorrowerName string `bson:"BorrowerName"`
+	LoanAmt      int    `bson:"LoanAmt"`
+	LoanEMI      int    `bson:"LoanEMI"`
 }
 
 var LoanDetails = []LoanDetail{}
 
-func GetAllLoanDetailDB() {
+func GetAllLoanDetailDB() (results []bson.D, err error) {
 	var filter, option interface{}
 	// filter  gets all document
 	filter = bson.D{}
@@ -31,20 +31,20 @@ func GetAllLoanDetailDB() {
 	if err != nil {
 		panic(err)
 	}
-	var results []bson.D
 	if err := cursor.All(Ctx, &results); err != nil {
 		panic(err)
 	}
-	// Append the loan details
-	formatResult(results)
+	return results, err
 }
 
-func formatResult(result []bson.D) {
-	loanInfo := LoanDetail{}
-	LoanDetails = []LoanDetail{}
-	for _, doc := range result {
-		bsonBytes, _ := bson.Marshal(doc)
-		bson.Unmarshal(bsonBytes, &loanInfo)
-		LoanDetails = append(LoanDetails, loanInfo)
+func InsertOneLoanDetailDB(loanInfo LoanDetail) (result interface{}, erro error) {
+	var option interface{}
+	option, err := bson.Marshal(loanInfo)
+	if err != nil {
+		panic(err)
 	}
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	result, erro = InsertOneDB(ctx, "MicroFinance", "loandetails", option)
+	return result, erro
 }

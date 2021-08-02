@@ -45,3 +45,8 @@ func QueryDB(ctx context.Context, dataBase, col string, query, field interface{}
 	result, err = collection.Find(ctx, query, options.Find().SetProjection(field))
 	return
 }
+func InsertOneDB(ctx context.Context, dataBase, col string, loanInfo interface{}) (result *mongo.InsertOneResult, err error) {
+	collection := Client.Database(dataBase).Collection(col)
+	result, err = collection.InsertOne(ctx, loanInfo)
+	return result, err
+}
