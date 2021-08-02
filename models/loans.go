@@ -2,6 +2,7 @@ package models
 
 import (
 	"context"
+	"microfinance/shared"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -27,7 +28,7 @@ func GetAllLoanDetailDB() (results []bson.D, err error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	// This method returns momngo.cursor and error if any.
-	cursor, err := QueryDB(ctx, "MicroFinance", "loandetails", filter, option)
+	cursor, err := QueryDB(ctx, shared.Database, shared.LoanDetailCollection, filter, option)
 	if err != nil {
 		panic(err)
 	}
@@ -45,6 +46,6 @@ func InsertOneLoanDetailDB(loanInfo LoanDetail) (result interface{}, erro error)
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	result, erro = InsertOneDB(ctx, "MicroFinance", "loandetails", option)
+	result, erro = InsertOneDB(ctx, shared.Database, shared.LoanDetailCollection, option)
 	return result, erro
 }

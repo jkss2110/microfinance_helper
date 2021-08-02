@@ -1,5 +1,7 @@
 package shared
 
 const (
-	ApiEndPoint string = ""
+	ApiEndPoint          string = ""
+	Database             string = "MicroFinance"
+	LoanDetailCollection string = "loandetails"
 )
