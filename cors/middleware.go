@@ -10,6 +10,6 @@ func MiddlewareHandler(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
 		handler.ServeHTTP(w, r)
-		fmt.Printf("Connection Closed %s", time.Since(start))
+		fmt.Printf("Request Closed %s", time.Since(start))
 	})
 }

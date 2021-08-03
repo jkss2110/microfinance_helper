@@ -2,7 +2,6 @@ package models
 
 import (
 	"context"
-	"microfinance/shared"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -19,16 +18,15 @@ type LoanDetail struct {
 
 var LoanDetails = []LoanDetail{}
 
-func GetAllLoanDetailDB() (results []bson.D, err error) {
-	var filter, option interface{}
+func GetLoanDetailDB(filter interface{}) (results []bson.D, err error) {
+	var option interface{}
 	// filter  gets all document
-	filter = bson.D{}
 	//  option remove id field from all documents
 	option = bson.D{{"_id", 0}}
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	// This method returns momngo.cursor and error if any.
-	cursor, err := QueryDB(ctx, shared.Database, shared.LoanDetailCollection, filter, option)
+	cursor, err := QueryDB(ctx, "MicroFinance", "loandetails", filter, option)
 	if err != nil {
 		panic(err)
 	}
@@ -37,7 +35,6 @@ func GetAllLoanDetailDB() (results []bson.D, err error) {
 	}
 	return results, err
 }
-
 func InsertOneLoanDetailDB(loanInfo LoanDetail) (result interface{}, erro error) {
 	var option interface{}
 	option, err := bson.Marshal(loanInfo)
@@ -46,6 +43,6 @@ func InsertOneLoanDetailDB(loanInfo LoanDetail) (result interface{}, erro error)
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	result, erro = InsertOneDB(ctx, shared.Database, shared.LoanDetailCollection, option)
+	result, erro = InsertOneDB(ctx, "MicroFinance", "loandetails", option)
 	return result, erro
 }

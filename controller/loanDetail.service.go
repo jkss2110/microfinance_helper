@@ -2,7 +2,6 @@ package controller
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"microfinance/models"
 	"net/http"
@@ -13,14 +12,15 @@ import (
 )
 
 func getAllLoans(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("ok")
-	results, err := models.GetAllLoanDetailDB()
+
+	filter := bson.D{}
+	results, err := models.GetLoanDetailDB(filter)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	formatResult(results)
-	loans := &models.LoanDetails
+	loans := formatResult(results)
+	models.LoanDetails = loans
 	loanJSON, err := json.Marshal(loans)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -52,16 +52,6 @@ func createLoanDetails(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 }
 
-func getNextID() int {
-	highestID := -1
-	for _, loan := range models.LoanDetails {
-		if highestID <= loan.Borrower {
-			highestID = loan.Borrower
-		}
-	}
-	return highestID + 1
-}
-
 func HandleHttp(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
@@ -88,23 +78,17 @@ func HandleSingleHttp(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func findLoanDetail(ID int) (models.LoanDetail, error) {
-	for _, loan := range models.LoanDetails {
-		if loan.Borrower == ID {
-			return loan, nil
-		}
-	}
-	return models.LoanDetail{}, fmt.Errorf("not found")
-}
-
 func getSingleLoan(borrowerID int, w http.ResponseWriter, r *http.Request) {
-	loan, err := findLoanDetail(borrowerID)
+	filter := bson.D{{"Borrower", borrowerID}}
+	results, err := models.GetLoanDetailDB(filter)
 	if err != nil {
-		w.WriteHeader(http.StatusNotFound)
+		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	loanInfo := formatResult(results)
+
 	w.Header().Set("Content-Type", "application/json")
-	loanJSON, err := json.Marshal(loan)
+	loanJSON, err := json.Marshal(loanInfo)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -113,12 +97,13 @@ func getSingleLoan(borrowerID int, w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusFound)
 }
 
-func formatResult(result []bson.D) {
+func formatResult(result []bson.D) []models.LoanDetail {
 	loanInfo := models.LoanDetail{}
-	models.LoanDetails = []models.LoanDetail{}
+	loanDetails := []models.LoanDetail{}
 	for _, doc := range result {
 		bsonBytes, _ := bson.Marshal(doc)
 		bson.Unmarshal(bsonBytes, &loanInfo)
-		models.LoanDetails = append(models.LoanDetails, loanInfo)
+		loanDetails = append(loanDetails, loanInfo)
 	}
+	return loanDetails
 }

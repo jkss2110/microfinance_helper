@@ -13,4 +13,5 @@ func main() {
 	shared.HandlerHttp(shared.ApiEndPoint)
 	http.ListenAndServe(":5000", nil)
 	defer models.Close()
+	fmt.Println("Connection Closed")
 }
