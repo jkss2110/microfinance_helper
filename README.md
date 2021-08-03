@@ -43,3 +43,8 @@ The majority of microfinancing operations occur in developing nations.
 ## TODO Discuss with Legendary people :P
 - Need to come up with a logic to calculate the score
 Learn more
+
+## Technology stack
+- React.js
+- Golang
+- MongoDB
