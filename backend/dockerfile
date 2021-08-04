@@ -1,0 +1,11 @@
+FROM golang as builder
+RUN mkdir /build
+WORKDIR /build
+COPY . ./
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix .
+
+FROM alpine:latest
+WORKDIR /app/
+COPY --from=builder /build/microfinance /app/microfinance-service
+EXPOSE 5000
+ENTRYPOINT ./microfinance-service
