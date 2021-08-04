@@ -30,7 +30,21 @@ func GetLoanDetailDB(filter interface{}) (results []bson.D, err error) {
 	if err != nil {
 		panic(err)
 	}
-	if err := cursor.All(Ctx, &results); err != nil {
+	if err := cursor.All(ctx, &results); err != nil {
+		panic(err)
+	}
+	return results, err
+}
+func GetLoanDetailTopDB(filter, sorter interface{}, limit int64) (results []bson.D, err error) {
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	cursor, err := QueryTopDB(ctx, "MicroFinance", "loandetails", filter, sorter, limit)
+	if err != nil {
+		panic(err)
+	}
+	if err := cursor.All(ctx, &results); err != nil {
 		panic(err)
 	}
 	return results, err
