@@ -24,6 +24,9 @@ The majority of microfinancing operations occur in developing nations.
 - Depending on the loan amount, the score of both borrower and lender will increase. 
 - On every successful loan payment, the score of the borrower and lender will increase.
 
+## Integrate e-Rupi as a payment method -ToDo
+- e-rupi doesnt involve any intermediate parties hence this should be incooperated.
+
 ## Activity Diagrams
 <p align="center">
 <img src="./docs/img/Applying for loan.png" alt="alt text" width="500px" height="400px">
