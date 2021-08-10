@@ -1,14 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import AppContainer from './components/AppContainer/AppContainer.component';
+import TileContainer from './components/TileContainer/TileContainer.component';
+import React from 'react';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>React Posts Sharer</h1>
-      </header>
-    </div>
+    <>
+    <AppContainer title="MicroFinance Helper"></AppContainer>
+    <TileContainer></TileContainer>
+    </>
   );
 }
 

@@ -1,0 +1,17 @@
+.App-header {
+    background-color: #edeff1;
+    display: flex;
+  }
+  
+  .App-root {
+    flex-grow: 1;
+    .App-bar {
+      background-color: #a3a3a3;
+    }
+  }
+  .App-menuButton {
+    margin-right: 0.5rem;
+  }
+  .App-title {
+    flex-grow: 1;
+  }
