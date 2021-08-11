@@ -3,42 +3,20 @@ import TileContainer from "../TileContainer/TileContainer.component";
 import { Chip, Divider } from "@material-ui/core";
 import {scroller} from "react-scroll"
 import "./HomePage.scss";
+import HttpRequestHandler from '../../service/HttpRequestHandler'
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
+    this.httpHandler = new HttpRequestHandler();
     this.state = {
-      loanInfo: [
-        {
-          borrowerID: 2,
-          lenderID: 1,
-          borrowerName: "Anupa Suresh",
-          loanAmt: 1200,
-          loanEMI: 100,
-        },
-        {
-          borrowerID: 2,
-          lenderID: 3,
-          borrowerName: "Jayakrishnan S",
-          loanAmt: 1200,
-          loanEMI: 100,
-        },
-        {
-          borrowerID: 2,
-          lenderID: 4,
-          borrowerName: "Bottle",
-          loanAmt: 1200,
-          loanEMI: 100,
-        },
-        {
-          borrowerID: 2,
-          lenderID: 5,
-          borrowerName: "Bond James",
-          loanAmt: 1200,
-          loanEMI: 100,
-        },
-      ],
+      loanInfo: [ ],
     };
+    this.httpHandler.fetchLoanInfo().then((loanInfo)=>{
+      this.setState({
+        loanInfo: loanInfo,
+      });
+    });
   }
   renderTileContent() {
     const loanInfos = this.state.loanInfo.slice();

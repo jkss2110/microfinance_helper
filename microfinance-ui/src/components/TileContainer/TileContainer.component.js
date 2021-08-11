@@ -11,13 +11,13 @@ export default class TileContainer extends React.Component {
       <Card className="tileContent-root" onClick={()=>{console.log("clicked")}}>
         <CardContent>
           <Typography variant="h5" component="h2">
-            {loanInfo.borrowerName}
+            {loanInfo.BorrowerName}
           </Typography>
           <Typography className="tileContent-pos" color="textSecondary">
-            Loan Amount {loanInfo.loanAmt}
+            Loan Amount {loanInfo.LoanAmt}
           </Typography>
           <Typography variant="body2" component="p">
-            Loan EMI per month {loanInfo.loanEMI}
+            Loan EMI per month {loanInfo.LoanEMI}
             <br />
           </Typography>
           <Typography variant="body2" component="p">
