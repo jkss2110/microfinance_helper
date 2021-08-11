@@ -10,7 +10,7 @@ export default class HttpRequestHandler {
   fetchLoanInfo = async () => {
     try{
         const response = await fetch(
-            "http://localhost:5000/loandetails",
+            "/loandetails",
             {
               headers: this.headers
             });
