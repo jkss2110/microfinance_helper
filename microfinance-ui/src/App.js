@@ -1,14 +1,14 @@
 import './App.scss';
 import AppContainer from './components/AppContainer/AppContainer.component';
-import TileContainer from './components/TileContainer/TileContainer.component';
 import React from 'react';
+import HomePage from './components/HomePage/HomePage.component';
 
 function App() {
 
   return (
     <>
     <AppContainer title="MicroFinance Helper"></AppContainer>
-    <TileContainer></TileContainer>
+    <HomePage></HomePage>
     </>
   );
 }

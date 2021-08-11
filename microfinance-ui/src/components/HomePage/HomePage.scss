@@ -1,0 +1,22 @@
+.tileContainer-content{
+    display: flex;
+    flex-direction: row;
+}
+.chipContainer{
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    position: sticky;
+    top: 0px;
+    .lenderChip, .borrowerChip,.erupiChip,.analyticsChip{
+        margin-right: 0.5rem;
+        cursor: pointer;
+    }
+}
+.tileContianer-header{
+    font-style: italic;
+    font-family: math;
+    padding-left: 4rem;
+    color: darkslategrey;
+}
