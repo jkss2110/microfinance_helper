@@ -1,0 +1,52 @@
+.masterDetail-root {
+  width: fit-content;
+  .masterDetail-loanbalance {
+    padding-left: 2rem;
+  }
+  .masterDetail-header {
+    display: flex !important;
+    justify-content: space-between;
+  }
+  .masterDetail-grid {
+    width: fit-content;
+  }
+  .masterDetail-title {
+    margin-top: 1rem;
+  }
+
+  .masterDetail-loanbalance {
+    justify-content: space-around;
+    display: flex;
+    padding-top: 0.5rem;
+  }
+  .masterDetail-info {
+    margin-top: 1rem;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: medium;
+    font-family: emoji;
+  }
+  .masterDetail-newdate {
+    padding-top: 2rem;
+    .masterDetail-datepicker {
+      margin-top: -0.2rem;
+      padding-left: 1rem;
+    }
+    .masterDetail-sendBtn {
+      margin-top: -0.3rem;
+      padding-left: 1rem;
+    }
+  }
+  .masterDetail-Feedback{
+      width: fit-content;
+      width: -webkit-fill-available;
+      padding-top: 2rem;
+  }
+  .masterDetail-feedbackBtn{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 2rem;
+  }
+}
