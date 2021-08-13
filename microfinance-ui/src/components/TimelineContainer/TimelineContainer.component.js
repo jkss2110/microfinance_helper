@@ -10,10 +10,9 @@ import {
 } from "@material-ui/lab";
 
 import {
-  Repeat as RepeatIcon,
-  Hotel as HotelIcon,
-  LaptopMac as LaptopMacIcon,
-  Fastfood as FastfoodIcon,
+  HourglassEmpty as HourglassEmptyIcon,
+  AttachMoney as AttachMoneyIcon,
+  MonetizationOn as MonetizationOnIcon,
 } from "@material-ui/icons";
 import { Typography, Paper } from "@material-ui/core";
 import "./TimelineContainer.scss";
@@ -24,73 +23,78 @@ export default function TimelineContainer() {
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            9:30 am
+            10/01/2020
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot>
-            <FastfoodIcon />
+            <HourglassEmptyIcon />
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className="timeline-paper">
             <Typography variant="h6" component="h1">
-              Eat
+              Loan taken
             </Typography>
-            <Typography>Because you need strength</Typography>
+            <Typography>Amount of INR 1200</Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
-            10:00 am
+            25/02/2020
           </Typography>
         </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color="primary">
-            <LaptopMacIcon />
+            <AttachMoneyIcon />
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className="timeline-paper">
             <Typography variant="h6" component="h1">
-              Code
+              EMI Payment
             </Typography>
-            <Typography>Because it&apos;s awesome!</Typography>
+            <Typography>First Installment of INR200 paid</Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
+        <TimelineOppositeContent>
+          <Typography variant="body2" color="textSecondary">
+            25/03/2020
+          </Typography>
+        </TimelineOppositeContent>
         <TimelineSeparator>
           <TimelineDot color="primary" variant="outlined">
-            <HotelIcon />
+            <MonetizationOnIcon />
           </TimelineDot>
           <TimelineConnector className="timeline-secondaryTail" />
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className="timeline-paper">
             <Typography variant="h6" component="h1">
-              Sleep
+              EMI Payment
             </Typography>
-            <Typography>Because you need rest</Typography>
+            <Typography>Second Installment of INR200 paid</Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
           <TimelineDot color="secondary">
-            <RepeatIcon />
+            <AttachMoneyIcon />
           </TimelineDot>
         </TimelineSeparator>
         <TimelineContent>
           <Paper elevation={3} className="timeline-paper">
             <Typography variant="h6" component="h1">
-              Repeat
+              EMI Payment
             </Typography>
-            <Typography>Because this is the life you love!</Typography>
+            <Typography>Third Installment of INR200 paid</Typography>
           </Paper>
         </TimelineContent>
       </TimelineItem>
