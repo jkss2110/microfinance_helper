@@ -13,6 +13,11 @@ class HomePage extends React.Component {
     this.state = {
       loanInfo: [],
     };
+  }
+  /*
+  On Init get the information requried to be shown in homepage
+  */
+  componentDidMount(){
     this.httpHandler.fetchLoanInfo().then((loanInfo) => {
       this.setState({
         loanInfo: loanInfo,
