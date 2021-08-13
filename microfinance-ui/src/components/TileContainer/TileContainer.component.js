@@ -4,11 +4,16 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import "./TileContainer.scss";
 
-export default class TileContainer extends React.Component {
+class TileContainer extends React.Component {
   render() {
     const loanInfo = this.props.loans;
+    const routingFunction = this.props.routingFunction;
     return (
-      <Card className="tileContent-root" onClick={()=>{console.log("clicked")}}>
+      <Card
+        key={loanInfo.BorrowerName}
+        className="tileContent-root"
+        onClick={() => routingFunction(`/detail`)}
+      >
         <CardContent>
           <Typography variant="h5" component="h2">
             {loanInfo.BorrowerName}
@@ -21,7 +26,7 @@ export default class TileContainer extends React.Component {
             <br />
           </Typography>
           <Typography variant="body2" component="p">
-            Balance {loanInfo.loanEMI}
+            Balance {loanInfo.LoanEMI}
             <br />
           </Typography>
         </CardContent>
@@ -29,3 +34,4 @@ export default class TileContainer extends React.Component {
     );
   }
 }
+export default TileContainer;
