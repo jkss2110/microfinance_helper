@@ -39,7 +39,7 @@ func DBConnection() {
 	}
 }
 
-// query method returns a cursor and error.
+// query method returns a cursor and error.....
 func QueryDB(ctx context.Context, dataBase, col string, query, field interface{}) (result *mongo.Cursor, err error) {
 	collection := Client.Database(dataBase).Collection(col)
 	result, err = collection.Find(ctx, query, options.Find().SetProjection(field))
