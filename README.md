@@ -23,6 +23,7 @@ The majority of microfinancing operations occur in developing nations.
 - On every defaulting of loan, the score will reduce for the borrower.
 - Depending on the loan amount, the score of both borrower and lender will increase. 
 - On every successful loan payment, the score of the borrower and lender will increase.
+- IEEE paper to try out - 'Credit Scoring Model Implementation in a Microfinance Context'
 
 ## Integrate e-Rupi as a payment method -ToDo
 - e-rupi doesnt involve any intermediate parties hence this should be incooperated.
@@ -44,10 +45,11 @@ The majority of microfinancing operations occur in developing nations.
 <p align="center"><b>Activity flow for missing payment</b></p>
 
 ## TODO Discuss with Legendary people :P
-- Need to come up with a logic to calculate the score
+
 Learn more
 
 ## Technology stack
 - React.js
 - Golang
 - MongoDB
+- Ethereum Blockchain
